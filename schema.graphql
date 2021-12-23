@@ -1,0 +1,6 @@
+type TransferTx @entity {
+  id: ID!
+  from: Bytes!
+  to: Bytes!
+  amount: BigDecimal!
+}
