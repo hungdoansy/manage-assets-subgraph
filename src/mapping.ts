@@ -12,6 +12,7 @@ export function handleTransfer(event: TransferEvent): void {
   transfer.from = from;
   transfer.to = to;
   transfer.timestamp = event.block.timestamp;
+  transfer.block = event.block.number;
 
   transfer.amount = event.params.value
     .toBigDecimal()
