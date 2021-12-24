@@ -3,4 +3,5 @@ type Transfer @entity {
   from: Bytes!
   to: Bytes!
   amount: BigDecimal!
+  timestamp: BigInt!
 }
