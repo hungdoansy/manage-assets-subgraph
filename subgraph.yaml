@@ -16,6 +16,8 @@ dataSources:
       entities:
         - NewToken
         - NewWallet
+        - Token
+        - Wallet
       abis:
         - name: ManageAssets
           file: ./abis/ManageAssets.json
@@ -44,6 +46,7 @@ templates:
       language: wasm/assemblyscript
       entities:
         - Token
+        - Transfer
       abis:
         - name: Token
           file: ./abis/Token.json

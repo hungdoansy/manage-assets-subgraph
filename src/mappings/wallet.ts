@@ -1,7 +1,6 @@
-import { BigDecimal, BigInt } from "@graphprotocol/graph-ts"
 import { NewToken as NewTokenEvent, NewWallet as NewWalletEvent } from "../types/ManageAssets/ManageAssets"
 import { Token as TokenTemplate } from "../types/templates"
-import { Token } from "../types/schema"
+import { Token, Wallet } from "../types/schema"
 
 import { fetchTokenSymbol, fetchTokenName, fetchTokenDecimals } from "./helpers"
 
@@ -21,4 +20,12 @@ export function handleNewToken(event: NewTokenEvent): void {
     token.save()
 }
 
-export function handleNewWallet(event: NewWalletEvent): void {}
+export function handleNewWallet(event: NewWalletEvent): void {
+    let wallet = Wallet.load(event.params._address.toHexString())
+
+    if (wallet === null) {
+        wallet = new Wallet(event.params._address.toHexString())
+    }
+
+    wallet.save()
+}
