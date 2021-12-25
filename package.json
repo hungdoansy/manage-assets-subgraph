@@ -1,16 +1,27 @@
 {
-  "name": "manage-assets-subgraph",
-  "license": "UNLICENSED",
-  "scripts": {
-    "codegen": "graph codegen",
-    "build": "graph build",
-    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ hungdoansy/manage-assets-subgraph",
-    "create-local": "graph create --node http://localhost:8020/ hungdoansy/manage-assets-subgraph",
-    "remove-local": "graph remove --node http://localhost:8020/ hungdoansy/manage-assets-subgraph",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 hungdoansy/manage-assets-subgraph"
-  },
-  "dependencies": {
-    "@graphprotocol/graph-cli": "0.25.1",
-    "@graphprotocol/graph-ts": "0.24.1"
-  }
+    "name": "manage-assets-subgraph",
+    "license": "UNLICENSED",
+    "scripts": {
+        "codegen": "graph codegen --output-dir src/types/",
+        "build": "graph build",
+        "deploy": "graph deploy --node https://api.thegraph.com/deploy/ hungdoansy/manage-assets-subgraph",
+        "create-local": "graph create --node http://localhost:8020/ hungdoansy/manage-assets-subgraph",
+        "remove-local": "graph remove --node http://localhost:8020/ hungdoansy/manage-assets-subgraph",
+        "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 hungdoansy/manage-assets-subgraph",
+        "lint": "eslint --fix .",
+        "format": "prettier --write './**/*.{js,ts,css,md,json,sol,yml,yaml}' --config ./.prettierrc"
+    },
+    "dependencies": {
+        "@graphprotocol/graph-cli": "0.25.1",
+        "@graphprotocol/graph-ts": "0.24.1"
+    },
+    "devDependencies": {
+        "@typescript-eslint/eslint-plugin": "4.33.0",
+        "@typescript-eslint/parser": "4.33.0",
+        "eslint": "7.32.0",
+        "eslint-config-prettier": "8.3.0",
+        "eslint-plugin-prettier": "3.4.0",
+        "prettier": "2.3.1",
+        "typescript": "4.3.2"
+    }
 }

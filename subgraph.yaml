@@ -1,24 +1,53 @@
 specVersion: 0.0.2
 schema:
   file: ./schema.graphql
+
 dataSources:
   - kind: ethereum
-    name: Token
+    name: ManageAssets
     network: ropsten
     source:
-      address: "0x110a13FC3efE6A245B50102D2d79B3E76125Ae83"
-      abi: Token
-      startBlock: 11644490
+      address: "0x4248ad8b135800da3e8b430ee4dcf320c3b108d7"
+      abi: ManageAssets
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
       language: wasm/assemblyscript
       entities:
-        - Transfer
+        - NewToken
+        - NewWallet
+      abis:
+        - name: ManageAssets
+          file: ./abis/ManageAssets.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+        - name: ERC20SymbolBytes
+          file: ./abis/ERC20SymbolBytes.json
+        - name: ERC20NameBytes
+          file: ./abis/ERC20NameBytes.json
+      eventHandlers:
+        - event: NewToken(address)
+          handler: handleNewToken
+        - event: NewWallet(address)
+          handler: handleNewWallet
+      file: ./src/mappings/wallet.ts
+
+templates:
+  - name: Token
+    kind: ethereum/contract
+    network: ropsten
+    source:
+      abi: Token
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Token
       abis:
         - name: Token
           file: ./abis/Token.json
       eventHandlers:
         - event: Transfer(indexed address,indexed address,uint256)
           handler: handleTransfer
-      file: ./src/mapping.ts
+      file: ./src/mappings/token.ts

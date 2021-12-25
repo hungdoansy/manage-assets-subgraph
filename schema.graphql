@@ -1,3 +1,18 @@
+type Token @entity {
+  # token address
+  id: ID!
+
+  # mirrored from the smart contract
+  symbol: String!
+  name: String!
+  decimals: BigInt!
+}
+
+type Wallet @entity {
+  # wallet address
+  id: ID!
+}
+
 type Transfer @entity {
   id: ID!
   from: Bytes!
@@ -5,4 +20,28 @@ type Transfer @entity {
   amount: BigDecimal!
   timestamp: BigInt!
   block: BigInt!
+}
+
+type TokenBalance @entity {
+  # token address
+  id: ID!
+
+  token: Token!
+  balance: BigDecimal!
+}
+
+type WalletBalance @entity {
+  # wallet address
+  id: ID!
+
+  wallet: Wallet!
+  tokenBalances: [TokenBalance!]!
+}
+
+type Block @entity {
+  # block number
+  id: ID!
+
+  timestamp: BigInt!
+  walletBalances: [WalletBalance!]!
 }

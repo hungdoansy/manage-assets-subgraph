@@ -17,16 +17,12 @@ Try with this sample query:
 
 ```gql
 {
-  transfers(
-    first: 10
-    orderBy: timestamp
-    where: { to: "0xa9e2a9cb0b391b569fca2926441c4d8995d26e40" }
-  ) {
-    id
-    from
-    to
-    amount
-    timestamp
-  }
+    transfers(first: 10, orderBy: timestamp, where: { to: "0xa9e2a9cb0b391b569fca2926441c4d8995d26e40" }) {
+        id
+        from
+        to
+        amount
+        timestamp
+    }
 }
 ```

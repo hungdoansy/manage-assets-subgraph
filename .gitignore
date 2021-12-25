@@ -61,7 +61,8 @@ typings/
 .next
 
 # build folder
-build/
+/build/
 
 # generated folder
-generated/
+/generated/
+/src/types/
